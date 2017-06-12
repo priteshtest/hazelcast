@@ -9,7 +9,6 @@ node {
         }
         stage('test') {
             sh '''echo "Unit Tests cases" '''
-            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
         
        currentBuild.result = "SUCCESS" 
