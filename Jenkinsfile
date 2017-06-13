@@ -16,7 +16,7 @@ node {
 
 
     } catch (Throwable t) {
-        currentBuild.result = "FAILURE"
+        currentBuild.result = "FAILURE "
         throw t
     }
 }
