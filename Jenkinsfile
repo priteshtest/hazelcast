@@ -12,9 +12,10 @@ node('master') {
             stage('Maven') {
             
                 sh 'echo  "Maven"'
+                println(currentBuild.rawBuild.project.displayName)
                 
             }
-             dockerBuildPushAndClean 'abc:5000/' + env.JOB_NAME + ':' + env.BUILD_NUMBER
+
           
         }
     
