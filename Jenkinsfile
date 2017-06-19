@@ -12,7 +12,8 @@ node('master') {
             stage('Maven') {
             
                 sh 'echo  "Maven build"'
-                println(env.JOB_NAME.replaceAll(env.JOB_BASE_NAME, '' ))
+                def myVar = env.JOB_NAME.replaceAll('/'+env.JOB_BASE_NAME, '' )
+                println(myVar)
             }
 
           
