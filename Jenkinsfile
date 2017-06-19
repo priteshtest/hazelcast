@@ -12,7 +12,7 @@ node('master') {
             stage('Maven') {
             
                 sh 'echo  "Maven build"'
-                println(currentBuild.displayName)
+                println(env.JOB_NAME.replaceAll(env.JOB_BASE_NAME, '' ))
             }
 
           
