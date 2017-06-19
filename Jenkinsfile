@@ -11,16 +11,15 @@ node('master') {
         if (env.BRANCH_NAME == 'master') {
             stage('Maven') {
             
-                sh 'echo  "Maven"'
-                println(currentBuild.rawBuild.project.displayName)
-                
+                sh 'echo  "Maven build"'
+                println(currentBuild.rawBuild.project.parent.displayName)
             }
 
           
         }
     
     } catch (Throwable t) {
-        error('Build Failure: ${env.JOB_NAME}: ${t.message}\n${env.BUILD_URL}consoleText')
+        error('Build Failure: ${t.message}\n${env.BUILD_URL}consoleText')
 
 
         throw t
