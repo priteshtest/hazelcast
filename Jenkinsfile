@@ -1,34 +1,27 @@
-node {
+node('master') {
     stage('git clone') {
       checkout scm
     }
 
     try {
-        stage('Build')
-        {
-           echo 'Build stage'
-        }
-
-        stage('Test') 
-       {
-          echo 'Test stage'
-     
-        }
-        if (env.BRANCH_NAME == 'master') {
-            echo 'This happens only on master'
-            stage('bake') {
-
-                 echo'Bake Stage'
-
-            }
-        }
-        println('Build Success')
         
-        echo 'slackSend Success Message: Build OK: ${env.JOB_NAME}\n${env.BUILD_URL}' 
+        //Runs the standard set of build scripts assuming they are in the /scripts folder in the repo.
+        runBuildScripts {}
 
+        if (env.BRANCH_NAME == 'master') {
+            stage('Maven') {
+            
+                sh 'echo  "Maven"'
+                
+            }
+             dockerBuildPushAndClean 'abc:5000/' + env.JOB_NAME + ':' + env.BUILD_NUMBER
+          
+        }
+    
     } catch (Throwable t) {
         error('Build Failure: ${env.JOB_NAME}: ${t.message}\n${env.BUILD_URL}consoleText')
+
+
         throw t
     }
-    
 }
