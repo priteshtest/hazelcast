@@ -7,9 +7,9 @@ node('master') {
     try {
         
         //Runs the standard set of build scripts assuming they are in the /scripts folder in the repo.
-        if (env.JOB_BASE_NAME.contains('PR-') || env.JOB_BASE_NAME.contains('master')) {
+        /*if (env.JOB_BASE_NAME.contains('PR-') || env.JOB_BASE_NAME.contains('master')) {
           runBuildScripts {}
-        }
+        }*/
         bakeImage{}
 
         if (env.BRANCH_NAME == 'master') {
