@@ -1,3 +1,4 @@
+final String DOCKER_IMAGE = "pritesh"
 node('master') {
     stage('git clone') {
       checkout scm
@@ -9,7 +10,7 @@ node('master') {
         if (env.JOB_BASE_NAME.contains('PR-') || env.JOB_BASE_NAME.contains('master')) {
           runBuildScripts {}
         }
-        
+        bakeImage{}
 
         if (env.BRANCH_NAME == 'master') {
             stage('Maven') {
@@ -18,6 +19,8 @@ node('master') {
                 def myVar = env.JOB_NAME.replaceAll('/'+env.JOB_BASE_NAME, '' )
                 println(myVar)
             }
+            
+         
 
           
         }
