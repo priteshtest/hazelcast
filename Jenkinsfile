@@ -1,4 +1,4 @@
-final String DOCKER_IMAGE = "pritesh"
+env.DOCKER_IMAGE = "pritesh"
 node('master') {
     stage('git clone') {
       checkout scm
