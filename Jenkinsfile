@@ -10,7 +10,7 @@ node('master') {
         /*if (env.JOB_BASE_NAME.contains('PR-') || env.JOB_BASE_NAME.contains('master')) {
           runBuildScripts {}
         }*/
-        bakeImage{}
+        bakeImage "DockerImage"
 
         if (env.BRANCH_NAME == 'master') {
             stage('Maven') {
