@@ -5,8 +5,20 @@ pipeline {
         label 'master' 
     }
     stages {
-        runBuildScripts {}
+        steps {
+            runBuildScripts {}
+        }
     }
+    
+    post { 
+        failure { 
+            echo 'Build failed! :('
+        }
+        success { 
+            echo 'Build Pass.'
+        }
+    }
+    
 }
         
         
