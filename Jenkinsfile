@@ -1,4 +1,17 @@
 env.DOCKER_IMAGE = "pritesh"
+
+pipeline {
+    agent {
+        label 'master' 
+    }
+    stages {
+        runBuildScripts {}
+    }
+}
+        
+        
+// Scripted pipeline
+/*
 node('master') {
     stage('git clone') {
       checkout scm
@@ -7,11 +20,12 @@ node('master') {
     try {
         
         //Runs the standard set of build scripts assuming they are in the /scripts folder in the repo.
-        /*if (env.JOB_BASE_NAME.contains('PR-') || env.JOB_BASE_NAME.contains('master')) {
-          runBuildScripts {}
-        }*/
-        bakeImage "DockerImage"
-
+        //if (env.JOB_BASE_NAME.contains('PR-') || env.JOB_BASE_NAME.contains('master')) {
+        //  runBuildScripts {}
+       // }
+        
+        //bakeImage "DockerImage"
+        
         if (env.BRANCH_NAME == 'master') {
             stage('Maven') {
             
@@ -31,4 +45,4 @@ node('master') {
 
         throw t
     }
-}
+} */
