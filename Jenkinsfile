@@ -6,7 +6,9 @@ pipeline {
     }
     stages {
         stage('Run Tests') {
+            steps{ 
                 runBuildScripts {}
+            }
         }
     }
     
