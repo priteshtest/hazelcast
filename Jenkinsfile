@@ -4,11 +4,7 @@ pipeline {
     agent {
         label 'master' 
     }
-    stages {
-        steps {
-            runBuildScripts {}
-        }
-    }
+    runBuildScripts {}
     
     post { 
         failure { 
