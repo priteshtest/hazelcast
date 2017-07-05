@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Run Tests') {
             steps{ 
-                sh 'echo "runBuildScripts {}"'
+                sh 'echo "runScripts {}"'
             }
         }
     }
@@ -52,7 +52,7 @@ node('master') {
             stage('Maven') {
             
                 sh 'echo  "Maven build"'
-                def myVar = env.JOB_NAME.replaceAll('/'+env.JOB_BASE_NAME, '' )
+                def myVar = env.JOB_NAME
                 println(myVar)
             }
             
@@ -62,7 +62,7 @@ node('master') {
         }
     
     } catch (Throwable t) {
-        error('Build Failure: ${t.message}\n${env.BUILD_URL}consoleText')
+        error('Build Failure: consoleText')
 
 
         throw t
