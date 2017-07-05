@@ -4,7 +4,9 @@ pipeline {
     agent {
         label 'master' 
     }
-    stage('Example Deploy') {
+    
+    stages {
+        stage('Example Deploy') {
             when {
                 branch 'production'
             }
@@ -12,7 +14,7 @@ pipeline {
                 echo 'Deploying'
             }
     }  
-    stages {
+        
         stage('Run Tests') {
             steps{ 
                 sh 'echo "runScripts {}"'
