@@ -6,14 +6,15 @@ pipeline {
     }
     
     stages {
-        stage('Example Deploy') {
-            when {
+         when {
                 branch 'production'
             }
+            stage('Example Deploy') {
+           
             steps {
                 echo 'Deploying'
             }
-    }  
+        }  
         
         stage('Run Tests') {
             steps{ 
